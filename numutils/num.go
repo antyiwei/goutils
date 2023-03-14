@@ -1,6 +1,7 @@
 package numutils
 
 import (
+	"log"
 	"regexp"
 	"strings"
 )
@@ -59,4 +60,30 @@ func validateMobile(number string) bool {
 		return true
 	}
 	return false
+}
+
+func ParseCallee(callee string) (string, string) {
+	callees := strings.Split(callee, "+")
+	if len(callees) == 2 {
+		return callees[0], callees[1]
+	}
+
+	re, _ := regexp.Compile("[^a-zA-Z0-9]")
+	callee = re.ReplaceAllString(callee, "")
+	lenstr := len(callee)
+	if lenstr < 12 {
+		log.Println("callee not parsed:", callee)
+		return "", callee
+	}
+
+	start := lenstr - 11
+	if validateMobile(callee[start:]) {
+		return callee[:start], callee[start:]
+	}
+
+	start = lenstr - 12
+	if validateNum(callee[start:]) {
+		return callee[:start], callee[start:]
+	}
+	return "", callee
 }
