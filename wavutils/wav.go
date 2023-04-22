@@ -66,7 +66,7 @@ func (w *wavworker) write(buf []byte) error {
 		inBuf.Data[i] = int(buf[i])
 	}
 
-	w.e.WriteFrame(inBuf)
+	w.e.Write(&inBuf)
 
 	return nil
 }
