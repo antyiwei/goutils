@@ -90,13 +90,13 @@ func createNewWave(url string, input []byte) {
 	defer out.Close()
 
 	w := genWavWork(out, numChannels, sampleRate, sourceBitDepth, audioFormat)
+	defer w.close()
+
 	err = w.write(input)
 	if err != nil {
 		log.Println(fmt.Sprintf("couldn't write output file %s - %v", url, err))
 		return
 	}
-
-	defer w.close()
 
 }
 
@@ -113,12 +113,12 @@ func saveWave(url string, input []byte) {
 	defer fout.Close()
 
 	w := genWavWork(fout, numChannels, sampleRate, sourceBitDepth, audioFormat)
+	defer w.close()
+
 	err = w.write(input)
 	if err != nil {
 		log.Println(fmt.Sprintf("couldn't write output file %s - %v", url, err))
 		return
 	}
-
-	defer w.close()
 
 }
