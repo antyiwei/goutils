@@ -13,8 +13,9 @@ type MongoSetting struct {
 	DatabaseName string
 }
 
+var uri string
+var databaseName string
 
-var uri string, databaseName string
 func Get() MongoSetting {
 	return MongoSetting{
 		URI:          uri,

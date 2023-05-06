@@ -1,12 +1,14 @@
 module github.com/antyiwei/goutils
 
-go 1.19
+go 1.18
 
 require (
+	github.com/SaveTheRbtz/generic-sync-map-go v0.0.0-20230201052002-6c5833b989be
 	github.com/go-audio/audio v1.0.0
 	github.com/go-audio/wav v1.1.0
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/panjf2000/ants/v2 v2.7.1
+	github.com/syndtr/goleveldb v1.0.0
 	go.mongodb.org/mongo-driver v1.11.4
 )
 
