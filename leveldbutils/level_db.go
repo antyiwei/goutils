@@ -15,7 +15,7 @@ type DBManager struct {
 
 var syncMap = new(generic_sync.MapOf[string, DBManager])
 
-func NewDB(dbName string, dbFilePath string) {
+func NewDBManager(dbName string, dbFilePath string) {
 	localDB, err := initDB(dbFilePath)
 	if err != nil {
 		panic(dbFilePath + ",db file path is err")
@@ -47,7 +47,7 @@ func reInit(dbFilePath string) (*leveldb.DB, error) {
 	return initDB(dbFilePath)
 }
 
-func Get(dbName string) *leveldb.DB {
+func GetDB(dbName string) *leveldb.DB {
 	m, ok := syncMap.Load(dbName)
 	if !ok {
 		return nil
@@ -122,4 +122,32 @@ func SetKV(dbName string, key string, value string) error {
 
 func SetV(dbName string, value string) error {
 	return SetKV(dbName, "single", value)
+}
+
+func (m *DBManager) Del(key string) error {
+
+	if m.db == nil {
+		return fmt.Errorf("db not init")
+	}
+	return m.db.Delete([]byte(key), nil)
+}
+
+func Del(dbName string, key string) error {
+	m := GetDBManager(dbName)
+	if m == nil {
+		return fmt.Errorf("db manager not init")
+	}
+	return m.Del(key)
+}
+
+func (m *DBManager) Close() error {
+	return m.db.Close()
+}
+
+func Close(dbName string) error {
+	m := GetDBManager(dbName)
+	if m == nil {
+		return fmt.Errorf("db manager not init")
+	}
+	return m.Close()
 }
