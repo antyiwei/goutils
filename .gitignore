@@ -79,6 +79,7 @@ config.local.yaml
 
 # 编辑器相关
 .idea/
+.trae/
 *.eslintcache
 
 # Python 相关

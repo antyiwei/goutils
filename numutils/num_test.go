@@ -18,10 +18,10 @@ func TestValidateNumber(t *testing.T) {
 
 	lenstr := len(number)
 	start := lenstr - 11
-	if validateMobile(number[start:]) {
+	if ValidateMobile(number[start:]) {
 		log.Println("是手机号")
 	} else {
-		if validateNum(number[start-1:]) {
+		if ValidateNum(number[start-1:]) {
 			log.Println(number[start-1:], "是固话")
 		}
 	}

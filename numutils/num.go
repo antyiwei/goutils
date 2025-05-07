@@ -32,34 +32,25 @@ const (
 )
 
 func ValidateNumber(number string) bool {
-	result := validateNum(number)
+	result := ValidateNum(number)
 	if result {
 		return true
 	}
 
-	result = validateMobile(number)
-	if result {
-		return true
-	}
-	return false
+	result = ValidateMobile(number)
+	return result
 }
 
-func validateNum(number string) bool {
+func ValidateNum(number string) bool {
 	reg := regexp.MustCompile(NumberReg)
 	result := reg.MatchString(number)
-	if result {
-		return true
-	}
-	return false
+	return result
 }
 
-func validateMobile(number string) bool {
+func ValidateMobile(number string) bool {
 	reg := regexp.MustCompile(MobileRex)
 	result := reg.MatchString(number)
-	if result {
-		return true
-	}
-	return false
+	return result
 }
 
 func ParseCallee(callee string) (string, string) {
@@ -77,12 +68,12 @@ func ParseCallee(callee string) (string, string) {
 	}
 
 	start := lenstr - 11
-	if validateMobile(callee[start:]) {
+	if ValidateMobile(callee[start:]) {
 		return callee[:start], callee[start:]
 	}
 
 	start = lenstr - 12
-	if validateNum(callee[start:]) {
+	if ValidateNum(callee[start:]) {
 		return callee[:start], callee[start:]
 	}
 	return "", callee
