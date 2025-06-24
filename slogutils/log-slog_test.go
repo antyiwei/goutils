@@ -96,8 +96,8 @@ func TestUseJsonWithFile(t *testing.T) {
 }
 
 func TestDiy(t *testing.T) {
-	initSLog()     // 控制台|文本输出 （方式1）
-	initSlogFile() // 文件|文本输出 （方式1）
+	initSLog() // 控制台|文本输出 （方式1）
+	//initSlogFile() // 文件|文本输出 （方式2）
 
 	// 打印更漂亮的对象
 	slog.Debug("hello", "name", "world")

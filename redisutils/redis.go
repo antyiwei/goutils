@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/go-redis/redis/v8"
+	"github.com/redis/go-redis/v9"
 )
 
 func InitRedisClient(addr string, pass string, dbNum int) *redis.Client {
@@ -14,9 +14,8 @@ func InitRedisClient(addr string, pass string, dbNum int) *redis.Client {
 		Addr:         addr,
 		Password:     pass,  // no password set
 		DB:           dbNum, // use default DB
-		ReadTimeout:  time.Millisecond * time.Duration(500),
-		WriteTimeout: time.Millisecond * time.Duration(500),
-		IdleTimeout:  time.Second * time.Duration(60),
+		ReadTimeout:  time.Millisecond * time.Duration(1000),
+		WriteTimeout: time.Millisecond * time.Duration(1000),
 		PoolSize:     64,
 		MinIdleConns: 16,
 	})

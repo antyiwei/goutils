@@ -1,3 +1,44 @@
+
+ # ---> Go 
+ # Binaries for programs and plugins 
+ *.exe 
+ *.exe~ 
+ *.dll 
+ *.so 
+ *.dylib 
+ 
+ # Test binary, built with `go test -c` 
+ *.test 
+ 
+ # Output of the go coverage tool, specifically when used with LiteIDE 
+ *.out 
+ 
+ # Dependency directories (remove the comment below to include it) 
+ # vendor/ 
+ 
+ # Compiled Object files, Static and Dynamic libs (Shared Objects) 
+ *.o 
+ *.a 
+ 
+ # Folders 
+ _obj 
+ _test 
+ 
+ # Architecture specific extensions/prefixes 
+ *.[568vq] 
+ [568vq].out 
+ 
+ *.cgo1.go 
+ *.cgo2.c 
+ _cgo_defun.c 
+ _cgo_gotypes.go 
+ _cgo_export.* 
+ 
+ _testmain.go 
+ 
+ *.prof 
+ .svn/*
+
 # ---> 通用忽略规则
 # 构建目录
 /build/
@@ -23,9 +64,6 @@
 # Docker 相关
 .dockerignore
 Dockerfile*
-
-# VS Code 配置
-.vscode/
 
 # Sublime Text 配置
 *.sublime-workspace
@@ -80,6 +118,7 @@ config.local.yaml
 # 编辑器相关
 .idea/
 .trae/
+.vscode/
 *.eslintcache
 
 # Python 相关
